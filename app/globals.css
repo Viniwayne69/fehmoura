@@ -138,8 +138,8 @@ button, input, textarea, select { font: inherit; color: inherit; }
    Logo
    ===================================================================== */
 .logo { display: inline-flex; flex-direction: column; line-height: 1; text-transform: uppercase; font-weight: 300; position: relative; }
-.logo__img { display: block; height: 36px; width: auto; max-width: 100%; }
-@media (max-width: 700px) { .logo__img { height: 30px; } }
+.logo__name { font-size: 12.5px; letter-spacing: .22em; white-space: nowrap; }
+@media (max-width: 700px) { .logo__name { font-size: 10px; letter-spacing: .16em; } }
 
 /* =====================================================================
    Header

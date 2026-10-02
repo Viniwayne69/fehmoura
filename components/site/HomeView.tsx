@@ -60,31 +60,6 @@ export function HomeView({ events, photos, settings }: Props) {
         </div>
       </section>
 
-      {/* ---------- SERVIÇOS ---------- */}
-      <section className="section section--tight section--ink">
-        <div className="wrap">
-          <div className="services">
-            <Reveal className="services__intro">
-              <span className="eyebrow">Serviços</span>
-              <h2 className="title title--sm">Vibrações da pista</h2>
-              <p className="lead">Sets personalizados para cada evento, com a energia certa para transformar o seu momento em algo inesquecível.</p>
-              <Link href="/contato" className="btn">Contratar <ArrowRight /></Link>
-            </Reveal>
-            <Reveal className="services__grid" delay={1}>
-              {SERVICES.map((s) => {
-                const Icon = serviceIcons[s.icon];
-                return (
-                  <Link key={s.slug} href={`/contato?tipo=${s.slug}`} className="service">
-                    <Icon />
-                    <span>{s.title}</span>
-                  </Link>
-                );
-              })}
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ---------- AGENDA ---------- */}
       <section className="section section--tight section--carbon">
         <div className="wrap agenda">
@@ -111,6 +86,31 @@ export function HomeView({ events, photos, settings }: Props) {
               <Link href="/contato" className="btn">Contratar <ArrowRight /></Link>
             )}
           </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- SERVIÇOS ---------- */}
+      <section className="section section--tight section--ink">
+        <div className="wrap">
+          <div className="services">
+            <Reveal className="services__intro">
+              <span className="eyebrow">Serviços</span>
+              <h2 className="title title--sm">Vibrações da pista</h2>
+              <p className="lead">Sets personalizados para cada evento, com a energia certa para transformar o seu momento em algo inesquecível.</p>
+              <Link href="/contato" className="btn">Contratar <ArrowRight /></Link>
+            </Reveal>
+            <Reveal className="services__grid" delay={1}>
+              {SERVICES.map((s) => {
+                const Icon = serviceIcons[s.icon];
+                return (
+                  <Link key={s.slug} href={`/contato?tipo=${s.slug}`} className="service">
+                    <Icon />
+                    <span>{s.title}</span>
+                  </Link>
+                );
+              })}
+            </Reveal>
+          </div>
         </div>
       </section>
 

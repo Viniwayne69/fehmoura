@@ -37,7 +37,7 @@ export default async function SobrePage() {
       <PageHero eyebrow="Sobre" title="A noite que você não vai querer que termine." long />
 
       <section className="section section--ink">
-        <div className="wrap split">
+        <div className="wrap split split--lg">
           <Reveal className="about__media">
             <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 45vw" />
           </Reveal>

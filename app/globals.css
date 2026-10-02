@@ -350,6 +350,12 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .service:hover { background: rgba(225, 6, 0, .05); }
 .service:hover svg { color: var(--red-hot); transform: translateY(-4px); }
 .service span { max-width: 13ch; text-wrap: balance; }
+/* Computador: serviços maiores */
+@media (min-width: 1001px) {
+  .service { padding: 56px 16px; gap: 28px; font-size: 14px; letter-spacing: .14em; }
+  .service svg { width: 48px; height: 48px; stroke-width: 1.4; }
+  .service span { max-width: 14ch; }
+}
 @media (max-width: 1000px) {
   .services { grid-template-columns: 1fr; }
 }

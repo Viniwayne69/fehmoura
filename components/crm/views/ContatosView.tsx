@@ -6,7 +6,7 @@ import { brl, fmtShort } from "@/lib/crm/date";
 import { useCrm } from "../CrmProvider";
 import { DealModal } from "../DealModal";
 import { CWhats } from "../icons";
-import { Modal, PageHead, StageTag, initials } from "../ui";
+import { Modal, PageHead, StageTag } from "../ui";
 
 export function ContatosView() {
   const { contacts, deals, paidOf } = useCrm();
@@ -36,7 +36,6 @@ export function ContatosView() {
           const spent = spentOf(c.id);
           return (
             <li key={c.id} className="adm-row crm-click crm-row-contact" onClick={() => setContactId(c.id)}>
-              <span className="crm-avatar" aria-hidden>{initials(c.name)}</span>
               <div>
                 <div className="adm-row__title">{c.name}</div>
                 <div className="adm-row__meta">{c.city} · {c.origin}</div>

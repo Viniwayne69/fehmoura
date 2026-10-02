@@ -53,7 +53,7 @@ export function HomeView({ events, photos, settings }: Props) {
           </Reveal>
           <Reveal className="about__text" delay={1}>
             <span className="eyebrow">Sobre</span>
-            <h2 className="title">Mais que música, é sobre pessoas</h2>
+            <h2 className="title">A noite que você não vai querer que termine.</h2>
             <p className="lead">{bio}</p>
             <Link href="/sobre" className="btn">Saiba mais <ArrowRight /></Link>
           </Reveal>

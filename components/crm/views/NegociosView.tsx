@@ -31,7 +31,7 @@ export function NegociosView() {
     if (next) moveDeal(d.id, next.id);
   };
 
-  function onDrop(e: DragEvent<HTMLDivElement>, stage: StageId) {
+  function onDrop(e: DragEvent<HTMLElement>, stage: StageId) {
     e.preventDefault();
     const id = e.dataTransfer.getData("text/plain") || dragging;
     if (id) moveDeal(id, stage);

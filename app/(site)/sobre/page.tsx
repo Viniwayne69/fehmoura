@@ -49,7 +49,7 @@ export default async function SobrePage() {
       </section>
 
       <section className="section section--tight section--ink">
-        <div className="wrap">
+        <div className="wrap quote-block">
           <Reveal as="blockquote" className="quote">
             A pista é onde as pessoas se encontram e a música é o que faz esse encontro acontecer
           </Reveal>

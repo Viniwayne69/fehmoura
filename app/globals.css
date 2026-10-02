@@ -591,6 +591,15 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .pillar, .pillar + .pillar { padding: 28px 0; border-left: 0; border-bottom: 1px solid var(--line); }
 }
 
+/* Computador: frase e pilares maiores e centralizados, na mesma largura da seção de cima */
+@media (min-width: 1101px) {
+  .quote-block { max-width: calc(1500px + var(--gutter) * 2); }
+  .quote-block .quote { font-size: clamp(28px, 2.5vw, 42px); max-width: 30em; margin-inline: auto; }
+  .quote-block .pillar, .quote-block .pillar + .pillar { padding: 52px 40px; text-align: center; }
+  .quote-block .pillar h3 { font-size: 16px; margin-bottom: 18px; }
+  .quote-block .pillar p { font-size: 18px; line-height: 1.7; max-width: 30ch; margin-inline: auto; text-wrap: balance; }
+}
+
 .embed { border: 0; width: 100%; border-radius: 12px; background: var(--carbon); }
 
 /* Agenda (página) */

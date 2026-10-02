@@ -32,7 +32,7 @@ export function InicioView() {
     <>
       <PageHead title="Olá, Feh" sub="Seus pedidos, eventos e recebimentos em um só lugar.">
         <button type="button" className="adm-btn adm-btn--primary" onClick={() => setCreating(true)}>+ Novo negócio</button>
-        <Link href="/admin/crm/negocios" className="adm-btn">Ver funil</Link>
+        <Link href="/crm/negocios" className="adm-btn">Ver funil</Link>
       </PageHead>
 
       <div className="adm-stats">

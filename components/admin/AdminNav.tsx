@@ -32,7 +32,7 @@ export function AdminNav({ newLeads, variant }: { newLeads: number; variant: "si
 
   return (
     <nav className="adm-nav" aria-label="Painel">
-      {[...ITEMS, { href: "/admin/crm", label: "CRM" }].map(({ href, label }) => (
+      {[...ITEMS, { href: "/crm", label: "CRM" }].map(({ href, label }) => (
         <Link key={href} href={href} aria-current={active(href) ? "page" : undefined}>
           {label}
           {href === "/admin/pedidos" && newLeads > 0 && <span className="adm-badge">{newLeads}</span>}

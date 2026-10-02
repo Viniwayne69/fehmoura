@@ -11,7 +11,7 @@ export async function middleware(request: NextRequest) {
 
   if (!isSupabaseConfigured) {
     // CRM de demonstração (dados fictícios): liberado só enquanto o banco não está ligado
-    if (isLogin || path.startsWith("/admin/crm")) return response;
+    if (isLogin || path.startsWith("/crm")) return response;
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 
@@ -38,4 +38,4 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
-export const config = { matcher: ["/admin/:path*"] };
+export const config = { matcher: ["/admin/:path*", "/crm/:path*", "/crm"] };

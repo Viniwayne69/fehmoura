@@ -250,6 +250,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 }
 .sound-btn svg { width: 18px; height: 18px; }
 .sound-btn:hover, .sound-btn.is-on { background: var(--red); }
+/* som ligado: botão menor e mais discreto */
+.sound-btn.is-on { min-height: 32px; padding: 6px 11px; gap: 7px; font-size: 8.5px; }
+.sound-btn.is-on svg { width: 14px; height: 14px; }
 .sound-btn:not(.is-on) svg { animation: pulse 2.2s ease-in-out infinite; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
 

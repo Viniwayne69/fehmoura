@@ -22,7 +22,7 @@ const DEFAULT_PARAGRAPHS = [
 ];
 
 const PILLARS = [
-  { n: "01", t: "O som", d: "Eletrônico, house e groove costurados com transições suaves e muita personalidade." },
+  { n: "01", t: "O som", d: "Funk, pop, house e música internacional, escolhidos na hora de acordo com o clima da pista." },
   { n: "02", t: "A leitura de pista", d: "Atenção total ao público para ajustar a energia no momento certo, sem perder o fio do set." },
   { n: "03", t: "A experiência", d: "Cada evento recebe um set pensado para ele, do primeiro convidado até a última música." },
 ];
@@ -56,7 +56,7 @@ export default async function SobrePage() {
           <Reveal className="pillars" delay={1}>
             {PILLARS.map((p) => (
               <div key={p.n} className="pillar">
-                <h3><b>{p.n}</b>{p.t}</h3>
+                <h3>{p.t}</h3>
                 <p>{p.d}</p>
               </div>
             ))}

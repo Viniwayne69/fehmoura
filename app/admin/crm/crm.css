@@ -1,4 +1,58 @@
 /* =====================================================================
+   Tema claro do CRM: fundo cinza claro, textos escuros e fortes, vermelho de destaque.
+   Redefine só as cores dentro do CRM; o resto do painel e o site não mudam.
+   ===================================================================== */
+.crm {
+  --black: #e3e3e7;       /* fundo da página */
+  --ink: #f2f2f4;         /* barra lateral e colunas */
+  --carbon: #fbfbfc;      /* cartões e janelas */
+  --white: #141418;       /* texto principal */
+  --muted: #45454d;       /* texto secundário (bem legível) */
+  --dim: #62626b;
+  --line: rgba(20, 20, 24, .14);
+  --line-strong: rgba(20, 20, 24, .3);
+  --red-hot: #c40500;
+  color: var(--white);
+}
+.crm .adm-card, .crm .adm-stat, .crm .adm-list, .crm .crm-card, .crm .crm-col { box-shadow: 0 1px 2px rgba(20, 20, 24, .07); }
+.crm .adm-head h1 { font-weight: 400; }
+.crm .adm-stat strong, .crm .crm-money strong { font-weight: 500; }
+.crm .adm-row__title, .crm .crm-card b { font-weight: 600; }
+.crm .adm-card h2, .crm .crm-h3, .crm .crm-detail h3 { color: #2c2c33; }
+.crm .adm-field input, .crm .adm-field select, .crm .adm-field textarea { background: #fff; color: #141418; color-scheme: light; }
+.crm .adm-nav a:hover { background: rgba(20, 20, 24, .05); }
+.crm .adm-nav a[aria-current="page"] { background: rgba(225, 6, 0, .1); font-weight: 600; }
+.crm .adm-btn--primary { color: #fff; }
+.crm .adm-btn:hover { border-color: #141418; }
+.crm .adm-btn--wa { border-color: #1f8f4e; color: #0d6b38; }
+.crm .adm-btn--wa:hover { background: rgba(13, 107, 56, .1); border-color: #0d6b38; }
+.crm .adm-btn--danger { color: #b30500; border-color: rgba(196, 5, 0, .5); }
+.crm .tag { color: #3a3a42; }
+.crm .tag--red { color: #b30500; border-color: rgba(196, 5, 0, .6); background: rgba(225, 6, 0, .06); }
+.crm .tag--green { color: #0d6b38; border-color: rgba(13, 107, 56, .55); background: rgba(13, 107, 56, .07); }
+.crm .tag--dim { color: #62626b; }
+.crm .adm-msg--err { color: #8a1f1a; }
+.crm .adm-msg--ok { color: #0d5a31; }
+.crm .crm-demo { color: #6e1511; background: rgba(225, 6, 0, .08); border-color: rgba(196, 5, 0, .45); }
+.crm .crm-click:hover { background: rgba(20, 20, 24, .04); }
+.crm .crm-card span, .crm .crm-hbar__label, .crm .lead-card__msg { color: #1d1d22; }
+.crm .crm-hbar__track { background: rgba(20, 20, 24, .08); }
+.crm .crm-chip--orcamento { color: #a30500; border-color: rgba(196, 5, 0, .7); }
+.crm .crm-chip--conversa { color: #45454d; border-color: rgba(20, 20, 24, .35); }
+.crm .crm-chip--realizado { background: rgba(20, 20, 24, .1); color: #45454d; }
+.crm .crm-cal__cell.is-today .crm-cal__num { color: #fff; }
+.crm .crm-cal__cell.is-conflict { background: rgba(225, 6, 0, .09); }
+.crm .crm-legend .crm-chip--conversa, .crm .crm-legend .crm-chip--orcamento { background: transparent; }
+.crm .crm-vbar__val, .crm .crm-vbar__label { color: #45454d; }
+.crm .crm-chart figcaption small { color: #62626b; }
+.crm .adm-side__foot, .crm .adm-side__foot a { color: #55555d; }
+.crm .adm-side__foot a:hover { color: #141418; }
+.crm .adm-modal-bg { background: rgba(20, 20, 24, .5); }
+.crm .crm-fin__bar { background: rgba(20, 20, 24, .12); }
+.crm-tabbar { background: rgba(244, 244, 246, .97); }
+.crm .adm-topbar { background: var(--ink); }
+
+/* =====================================================================
    CRM da Feh — usa a base do painel (admin.css) e acrescenta o que é do CRM
    ===================================================================== */
 .crm-demo {
@@ -22,7 +76,7 @@
 @media (max-width: 860px) {
   .crm-tabbar {
     position: fixed; inset: auto 0 0 0; z-index: 30; display: flex; overflow-x: auto; scrollbar-width: none;
-    background: rgba(11,11,11,.96); backdrop-filter: blur(10px); border-top: 1px solid var(--line);
+    background: rgba(244,244,246,.97); backdrop-filter: blur(10px); border-top: 1px solid var(--line);
     padding-bottom: env(safe-area-inset-bottom);
   }
   .crm-tabbar::-webkit-scrollbar { display: none; }

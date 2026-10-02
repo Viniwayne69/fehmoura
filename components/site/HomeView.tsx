@@ -8,6 +8,7 @@ import { ContactForm } from "./ContactForm";
 import { EventRow } from "./EventRow";
 import { Gallery } from "./Gallery";
 import { HeroVideo } from "./HeroVideo";
+import { MistWhen } from "./MistWhen";
 import { Reveal } from "./Reveal";
 
 type Props = { events: DjEvent[]; photos: Photo[]; settings: Settings };
@@ -44,7 +45,8 @@ export function HomeView({ events, photos, settings }: Props) {
       </section>
 
       {/* ---------- SOBRE ---------- */}
-      <section id="sobre" className="section section--ink">
+      <section id="sobre" className="section section--ink section--mist">
+        <MistWhen query="(max-width: 700px)" className="about__mist" speed={0.6} opacity={0.6} />
         <div className="wrap about">
           <Reveal className="about__media">
             <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 50vw" />

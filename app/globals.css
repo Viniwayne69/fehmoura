@@ -315,6 +315,14 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .section--tight { padding: clamp(56px, 7vw, 88px) 0; }
 
 /* Sobre */
+/* névoa vermelha só no celular (no PC ela fica na tela inicial) */
+.section--mist { overflow: hidden; }
+.about__mist {
+  z-index: 0; mix-blend-mode: screen;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+}
+.section--mist > .wrap { position: relative; z-index: 1; }
 .about { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
 .about__media { position: relative; aspect-ratio: 1280 / 854; max-width: 100%; overflow: hidden; background: #0c0c0c; }
 .about__media img { width: 100%; height: 100%; object-fit: contain; }

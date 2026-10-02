@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SoundOff, SoundOn } from "../icons";
-import { MistBackground } from "./MistBackground";
+import { MistWhen } from "./MistWhen";
 
 const SRC = "/video/hero.mp4";
 const POSTER = "/video/hero-poster.jpg";
@@ -79,7 +79,7 @@ export function HeroVideo({ children }: { children: ReactNode }) {
         <video ref={bgRef} src={SRC} poster={POSTER} muted loop playsInline preload="metadata" tabIndex={-1} />
       </div>
 
-      <MistBackground className="hero__mist" speed={0.6} opacity={0.85} />
+      <MistWhen query="(min-width: 701px)" className="hero__mist" speed={0.6} opacity={0.85} />
 
       <div className="wrap hero__layout">
         <div className="hero__content">{children}</div>

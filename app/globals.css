@@ -593,7 +593,9 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 /* Computador: frase e pilares maiores e centralizados, na mesma largura da seção de cima */
 @media (min-width: 1101px) {
+  .section--quote { padding-top: clamp(20px, 2.4vw, 36px); }
   .quote-block { max-width: calc(1500px + var(--gutter) * 2); }
+  .quote-block .quote { padding-top: 12px; }
   .quote-block .quote { font-size: clamp(28px, 2.5vw, 42px); max-width: 30em; margin-inline: auto; }
   .quote-block .pillar, .quote-block .pillar + .pillar { padding: 52px 40px; text-align: center; }
   .quote-block .pillar h3 { font-size: 16px; margin-bottom: 18px; }

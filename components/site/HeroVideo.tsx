@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { SoundOff, SoundOn } from "../icons";
 import { MistWhen } from "./MistWhen";
+import { useSound } from "./SoundProvider";
 
 const SRC = "/video/hero.mp4";
 const POSTER = "/video/hero-poster.jpg";
@@ -17,7 +18,9 @@ export function HeroVideo({ children }: { children: ReactNode }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const mainRef = useRef<HTMLVideoElement>(null);
   const bgRef = useRef<HTMLVideoElement>(null);
-  const [soundOn, setSoundOn] = useState(false);
+  const { soundOn, toggle, position } = useSound();
+  const soundRef = useRef(soundOn);
+  soundRef.current = soundOn;
   const [canAutoplay, setCanAutoplay] = useState(true);
 
   const videos = () => [mainRef.current, bgRef.current].filter(Boolean) as HTMLVideoElement[];
@@ -47,7 +50,9 @@ export function HeroVideo({ children }: { children: ReactNode }) {
         const main = mainRef.current;
         if (!main) return;
         if (entry.isIntersecting) {
-          if (auto || !main.muted) playAll();
+          // volta para a tela inicial com a música tocando: o vídeo acompanha o som
+          if (soundRef.current && main.duration) main.currentTime = position() % main.duration;
+          if (auto || soundRef.current) playAll();
         } else {
           videos().forEach((v) => v.pause());
         }
@@ -61,14 +66,10 @@ export function HeroVideo({ children }: { children: ReactNode }) {
 
   function toggleSound() {
     const main = mainRef.current;
-    if (!main) return;
-    const next = !soundOn;
-    main.muted = !next;
-    if (next) {
-      main.volume = 1;
-      if (main.paused) playAll();
-    }
-    setSoundOn(next);
+    // o vídeo fica sempre mudo; quem toca é o player do site (segue em todas as páginas)
+    if (!soundOn && main && main.duration) main.currentTime = position() % main.duration;
+    toggle();
+    if (!soundOn) playAll();
   }
 
   const label = soundOn ? "Desligar som" : canAutoplay ? "Ativar som" : "Assistir com som";

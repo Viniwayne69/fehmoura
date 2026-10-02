@@ -93,26 +93,55 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .red-rule { display: block; width: 60px; height: 1px; background: var(--red); border: 0; margin: 0; }
 
 /* ---------- Botões ---------- */
+/* Botões com o vermelho em movimento, no estilo da névoa */
+@keyframes btn-mist {
+  0%   { background-position: 0% 30%, 100% 70%, 40% 100%, 0 0; }
+  50%  { background-position: 100% 60%, 0% 30%, 60% 0%, 0 0; }
+  100% { background-position: 0% 30%, 100% 70%, 40% 100%, 0 0; }
+}
 .btn {
+  --mist: radial-gradient(60% 130% at 50% 50%, rgba(255, 70, 55, .95), transparent 62%),
+          radial-gradient(55% 150% at 50% 50%, rgba(190, 0, 0, 1), transparent 66%),
+          radial-gradient(70% 110% at 50% 50%, rgba(255, 120, 95, .55), transparent 60%),
+          linear-gradient(#6a0300, #6a0300);
+  --mist-hot: radial-gradient(60% 130% at 50% 50%, rgba(255, 110, 90, 1), transparent 62%),
+              radial-gradient(55% 150% at 50% 50%, rgba(235, 20, 10, 1), transparent 66%),
+              radial-gradient(70% 110% at 50% 50%, rgba(255, 170, 140, .6), transparent 60%),
+              linear-gradient(#8f0400, #8f0400);
+  --mist-size: 220% 220%, 260% 260%, 200% 200%, auto;
   position: relative; isolation: isolate; overflow: hidden;
   display: inline-flex; align-items: center; justify-content: center; gap: 14px;
   padding: 15px 26px; min-height: 48px;
-  border: 1px solid var(--red); background: transparent; cursor: pointer;
+  border: 1px solid transparent; background: transparent; cursor: pointer;
   font-size: 11px; font-weight: 600; letter-spacing: var(--track-lg); text-transform: uppercase;
   color: var(--white); transition: color .4s var(--ease), border-color .4s var(--ease);
 }
+/* contorno vermelho em movimento */
+.btn::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; padding: 1px; pointer-events: none;
+  background: var(--mist); background-size: var(--mist-size); animation: btn-mist 7s ease-in-out infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+}
+/* preenchimento que entra no hover */
 .btn::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: var(--red); transform: scaleX(0); transform-origin: left;
+  background: var(--mist); background-size: var(--mist-size); animation: btn-mist 7s ease-in-out infinite;
+  transform: scaleX(0); transform-origin: left;
   transition: transform .5s var(--ease);
 }
 .btn:hover::before, .btn:focus-visible::before { transform: scaleX(1); }
 .btn svg { width: 14px; height: 14px; transition: transform .4s var(--ease); }
 .btn:hover svg { transform: translateX(4px); }
-.btn--solid { background: var(--red); }
-.btn--solid::before { background: var(--red-hot); }
+.btn--solid { background: var(--mist); background-size: var(--mist-size); animation: btn-mist 7s ease-in-out infinite; }
+.btn--solid::after { display: none; }
+.btn--solid::before { background: var(--mist-hot); background-size: var(--mist-size); }
 .btn--ghost { border-color: var(--line-strong); }
+.btn--ghost::after { display: none; }
 .btn--ghost:hover { border-color: var(--red); }
+@media (prefers-reduced-motion: reduce) {
+  .btn, .btn::before, .btn::after { animation: none; }
+}
 .btn[disabled] { opacity: .5; pointer-events: none; }
 
 .link-arrow {

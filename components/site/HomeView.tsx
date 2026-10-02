@@ -44,6 +44,22 @@ export function HomeView({ events, photos, settings }: Props) {
         </HeroVideo>
       </section>
 
+      {/* ---------- SOBRE ---------- */}
+      <section id="sobre" className="section section--ink section--mist">
+        <MistWhen query="(max-width: 700px)" className="about__mist" speed={0.6} opacity={0.6} />
+        <div className="wrap about">
+          <Reveal className="about__media">
+            <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 50vw" />
+          </Reveal>
+          <Reveal className="about__text" delay={1}>
+            <span className="eyebrow">Sobre</span>
+            <h2 className="title title--long">A noite que você não vai querer que termine.</h2>
+            <p className="lead">{bio}</p>
+            <Link href="/sobre" className="btn">Saiba mais <ArrowRight /></Link>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ---------- SERVIÇOS ---------- */}
       <section className="section section--tight section--ink">
         <div className="wrap">
@@ -94,22 +110,6 @@ export function HomeView({ events, photos, settings }: Props) {
             ) : (
               <Link href="/contato" className="btn">Contratar <ArrowRight /></Link>
             )}
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- SOBRE ---------- */}
-      <section id="sobre" className="section section--ink section--mist">
-        <MistWhen query="(max-width: 700px)" className="about__mist" speed={0.6} opacity={0.6} />
-        <div className="wrap about">
-          <Reveal className="about__media">
-            <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 50vw" />
-          </Reveal>
-          <Reveal className="about__text" delay={1}>
-            <span className="eyebrow">Sobre</span>
-            <h2 className="title title--long">A noite que você não vai querer que termine.</h2>
-            <p className="lead">{bio}</p>
-            <Link href="/sobre" className="btn">Saiba mais <ArrowRight /></Link>
           </Reveal>
         </div>
       </section>

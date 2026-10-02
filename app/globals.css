@@ -682,3 +682,27 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .notfound__code { font-size: clamp(90px, 18vw, 200px); font-weight: 200; letter-spacing: .1em; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--red); }
 .notfound .title { margin-top: 24px; }
 .notfound .lead { margin: 18px auto 36px; }
+
+/* ---------- Depoimentos ---------- */
+.testimonials { display: grid; gap: clamp(32px, 4vw, 56px); }
+.testimonials__featured { margin: 0; position: relative; padding-top: 48px; }
+.testimonials__featured::before {
+  content: "\201C"; position: absolute; top: -18px; left: -4px; font-size: 110px; line-height: 1; color: var(--red); font-weight: 300;
+}
+.testimonials__featured blockquote {
+  margin: 0; max-width: 26em; font-size: clamp(24px, 3vw, 40px); font-weight: 300; line-height: 1.4; letter-spacing: .01em; text-wrap: balance;
+}
+.testimonials__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.testimonial {
+  position: relative; padding: 32px 28px 30px; border: 1px solid var(--line); background: rgba(255, 255, 255, .02);
+  transition: border-color .4s var(--ease), background .4s var(--ease);
+}
+.testimonial::before { content: ""; position: absolute; left: 28px; top: 0; width: 36px; height: 2px; background: var(--red); }
+.testimonial:hover { border-color: var(--line-strong); background: rgba(225, 6, 0, .04); }
+.testimonial blockquote { margin: 0; font-size: 16px; line-height: 1.75; color: var(--white); text-wrap: pretty; }
+@media (max-width: 900px) {
+  .testimonials__grid { grid-template-columns: 1fr; }
+}
+@media (min-width: 1101px) {
+  .testimonial blockquote { font-size: 17px; }
+}

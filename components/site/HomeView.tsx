@@ -10,6 +10,7 @@ import { Gallery } from "./Gallery";
 import { HeroVideo } from "./HeroVideo";
 import { MistWhen } from "./MistWhen";
 import { Reveal } from "./Reveal";
+import { Testimonials } from "./Testimonials";
 
 type Props = { events: DjEvent[]; photos: Photo[]; settings: Settings };
 
@@ -131,6 +132,9 @@ export function HomeView({ events, photos, settings }: Props) {
           </div>
         </section>
       )}
+
+      {/* ---------- DEPOIMENTOS ---------- */}
+      <Testimonials />
 
       {/* ---------- CONTATO ---------- */}
       <section className="section section--tight contact" id="contato">

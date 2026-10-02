@@ -6,7 +6,8 @@
   position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; gap: 32px;
   padding: 28px 20px; border-right: 1px solid var(--line); background: var(--ink);
 }
-.adm-side .logo { margin-left: 8px; }
+.adm-side .logo { margin-left: 8px; max-width: 200px; }
+.adm-side .logo__name, .adm-login__box .logo__name { white-space: normal; font-size: 10.5px; letter-spacing: .18em; line-height: 1.7; }
 .adm-nav { display: flex; flex-direction: column; gap: 2px; }
 .adm-nav a {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;

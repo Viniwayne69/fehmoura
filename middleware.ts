@@ -10,7 +10,8 @@ export async function middleware(request: NextRequest) {
   if (isAuthFlow) return response;
 
   if (!isSupabaseConfigured) {
-    if (isLogin) return response;
+    // CRM de demonstração (dados fictícios): liberado só enquanto o banco não está ligado
+    if (isLogin || path.startsWith("/admin/crm")) return response;
     return NextResponse.redirect(new URL("/admin/login", request.url));
   }
 

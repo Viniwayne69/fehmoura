@@ -28,18 +28,15 @@ export const LEAD_STATUS_LABEL: Record<LeadStatus, string> = {
 };
 
 export const SERVICES = [
-  { slug: "corporativo", icon: "wave", title: "Eventos corporativos" },
-  { slug: "privada", icon: "glass", title: "Festas privadas" },
-  { slug: "clube", icon: "headphones", title: "Clubes e festivais" },
-  { slug: "personalizado", icon: "spark", title: "Experiências personalizadas" },
+  { slug: "festas", icon: "glass", title: "Festas particulares" },
+  { slug: "open-format", icon: "headphones", title: "Open Format DJ" },
+  { slug: "party-planner", icon: "spark", title: "Party Planning" },
 ] as const;
 
 export const EVENT_TYPES = [
-  "Evento corporativo",
-  "Festa privada",
-  "Casamento",
   "Aniversário",
-  "Clube ou casa noturna",
-  "Festival",
+  "Casamento",
+  "Formatura",
+  "Festa particular",
   "Outro",
 ];

@@ -14,7 +14,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     name: SITE_NAME,
     url: SITE_URL,
     image: `${SITE_URL}/og.jpg`,
-    genre: ["Electronic", "House", "Groove"],
+    genre: ["Funk", "Pop", "House", "International"],
     sameAs,
   };
 

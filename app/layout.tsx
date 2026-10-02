@@ -11,13 +11,13 @@ const montserrat = Montserrat({
 });
 
 const description =
-  "Feh Moura é DJ de música eletrônica, house e groove. Sets personalizados para clubes, festivais, festas privadas e eventos corporativos.";
+  "Feh Moura é Open Format DJ e Party Planner, com funk, pop, house e música internacional para aniversários, casamentos, formaturas e festas particulares.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: { default: `${SITE_NAME} | ${SLOGAN}`, template: `%s | ${SITE_NAME}` },
   description,
-  keywords: ["DJ Feh Moura", "Feh Moura", "DJ", "DJ para eventos", "DJ house", "música eletrônica", "DJ para festas"],
+  keywords: ["DJ Feh Moura", "Feh Moura", "Open Format DJ", "Party Planner", "DJ para festas", "DJ para aniversário", "DJ para casamento", "DJ para formatura", "funk", "pop", "house"],
   openGraph: {
     type: "website",
     locale: "pt_BR",

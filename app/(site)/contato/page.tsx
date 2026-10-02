@@ -13,10 +13,9 @@ export const metadata: Metadata = {
 };
 
 const TYPE_BY_SLUG: Record<string, string> = {
-  corporativo: "Evento corporativo",
-  privada: "Festa privada",
-  clube: "Clube ou casa noturna",
-  personalizado: "Outro",
+  festas: "Festa particular",
+  "open-format": "Festa particular",
+  "party-planner": "Outro",
 };
 
 const FAQ = [

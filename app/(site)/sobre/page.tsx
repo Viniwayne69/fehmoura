@@ -10,7 +10,7 @@ import { spotifyEmbed } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "Sobre",
-  description: "Conheça a história e o som da DJ Feh Moura, entre o eletrônico, o house e o groove da pista.",
+  description: "Conheça a história e o som da DJ Feh Moura, com funk, pop, house e música internacional.",
   alternates: { canonical: "/sobre" },
 };
 export const revalidate = 300;

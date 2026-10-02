@@ -44,23 +44,7 @@ export function HomeView({ events, photos, settings }: Props) {
         </HeroVideo>
       </section>
 
-      {/* ---------- SOBRE ---------- */}
-      <section id="sobre" className="section section--ink section--mist">
-        <MistWhen query="(max-width: 700px)" className="about__mist" speed={0.6} opacity={0.6} />
-        <div className="wrap about">
-          <Reveal className="about__media">
-            <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 50vw" />
-          </Reveal>
-          <Reveal className="about__text" delay={1}>
-            <span className="eyebrow">Sobre</span>
-            <h2 className="title title--long">A noite que você não vai querer que termine.</h2>
-            <p className="lead">{bio}</p>
-            <Link href="/sobre" className="btn">Saiba mais <ArrowRight /></Link>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ---------- SERVIÇOS + GALERIA ---------- */}
+      {/* ---------- SERVIÇOS ---------- */}
       <section className="section section--tight section--ink">
         <div className="wrap">
           <div className="services">
@@ -82,22 +66,6 @@ export function HomeView({ events, photos, settings }: Props) {
               })}
             </Reveal>
           </div>
-
-          {photos.length > 0 && (
-            <>
-              <hr className="divider" style={{ margin: "clamp(48px, 6vw, 72px) 0" }} />
-              <div className="gallery-strip">
-                <Reveal className="gallery-strip__intro">
-                  <span className="eyebrow">Galeria</span>
-                  <h2 className="title title--sm">Registros da pista</h2>
-                  <Link href="/galeria" className="link-arrow">Ver todas as fotos <ArrowRight /></Link>
-                </Reveal>
-                <Reveal delay={1}>
-                  <Gallery photos={photos} variant="strip" />
-                </Reveal>
-              </div>
-            </>
-          )}
         </div>
       </section>
 
@@ -129,6 +97,40 @@ export function HomeView({ events, photos, settings }: Props) {
           </Reveal>
         </div>
       </section>
+
+      {/* ---------- SOBRE ---------- */}
+      <section id="sobre" className="section section--ink section--mist">
+        <MistWhen query="(max-width: 700px)" className="about__mist" speed={0.6} opacity={0.6} />
+        <div className="wrap about">
+          <Reveal className="about__media">
+            <Image src="/img/hero.jpg" alt="Feh Moura de fones durante o set, de costas para a pista" fill unoptimized sizes="(max-width: 860px) 100vw, 50vw" />
+          </Reveal>
+          <Reveal className="about__text" delay={1}>
+            <span className="eyebrow">Sobre</span>
+            <h2 className="title title--long">A noite que você não vai querer que termine.</h2>
+            <p className="lead">{bio}</p>
+            <Link href="/sobre" className="btn">Saiba mais <ArrowRight /></Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------- GALERIA ---------- */}
+      {photos.length > 0 && (
+        <section className="section section--tight section--carbon">
+          <div className="wrap">
+            <div className="gallery-strip">
+              <Reveal className="gallery-strip__intro">
+                <span className="eyebrow">Galeria</span>
+                <h2 className="title title--sm">Registros da pista</h2>
+                <Link href="/galeria" className="link-arrow">Ver todas as fotos <ArrowRight /></Link>
+              </Reveal>
+              <Reveal delay={1}>
+                <Gallery photos={photos} variant="strip" />
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ---------- CONTATO ---------- */}
       <section className="section section--tight contact" id="contato">

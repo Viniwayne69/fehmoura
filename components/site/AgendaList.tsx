@@ -38,7 +38,7 @@ export function AgendaList({ events }: { events: DjEvent[] }) {
               <div className="event-card__actions">
                 <span className={`event__status event__status--${e.status}`}>{EVENT_STATUS_LABEL[e.status]}</span>
                 {e.ticket_url && e.status !== "esgotado" ? (
-                  <a className="btn" href={e.ticket_url} target="_blank" rel="noopener noreferrer">Ingressos <ArrowRight /></a>
+                  <a className="btn" href={e.ticket_url} target="_blank" rel="noopener noreferrer">Ver ingressos <ArrowRight /></a>
                 ) : null}
                 <a className="event-card__cal" href={googleCalendarLink(e)} target="_blank" rel="noopener noreferrer">Adicionar ao calendário</a>
               </div>

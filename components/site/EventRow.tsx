@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { EVENT_STATUS_LABEL } from "@/lib/constants";
 import { dayMonth } from "@/lib/format";
 import type { DjEvent } from "@/lib/types";
@@ -17,10 +18,16 @@ export function EventRow({ event }: { event: DjEvent }) {
       </div>
       <div className="event__side">
         <span className={`event__status event__status--${event.status}`}>{EVENT_STATUS_LABEL[event.status]}</span>
-        {event.ticket_url && event.status !== "esgotado" && event.status !== "cancelado" ? (
-          <a className="event__ticket" href={event.ticket_url} target="_blank" rel="noopener noreferrer" aria-label={`Ingressos para ${event.title}`}>
-            Ingressos <ArrowRight />
-          </a>
+        {event.status !== "esgotado" && event.status !== "cancelado" ? (
+          event.ticket_url ? (
+            <a className="event__ticket" href={event.ticket_url} target="_blank" rel="noopener noreferrer" aria-label={`Ver ingressos de ${event.title}`}>
+              Ver ingressos <ArrowRight />
+            </a>
+          ) : (
+            <Link className="event__ticket" href="/agenda" aria-label={`Ver detalhes de ${event.title}`}>
+              Ver ingressos <ArrowRight />
+            </Link>
+          )
         ) : null}
       </div>
     </li>

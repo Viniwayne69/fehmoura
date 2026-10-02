@@ -13,7 +13,7 @@ function inDays(days: number, hour = 23) {
 
 export const demoEvents: DjEvent[] = [
   { id: "d1", starts_at: inDays(10), title: "Techno Night", city: "São Paulo - SP", venue: null, ticket_url: "https://example.com/ingressos", status: "confirmado", published: true },
-  { id: "d2", starts_at: inDays(23), title: "Casa da Praia", city: "Rio de Janeiro - RJ", venue: null, ticket_url: null, status: "confirmado", published: true },
+  { id: "d2", starts_at: inDays(23), title: "Casa da Praia", city: "Rio de Janeiro - RJ", venue: null, ticket_url: "https://example.com/ingressos", status: "confirmado", published: true },
   { id: "d3", starts_at: inDays(37), title: "Festival Groove", city: "Belo Horizonte - MG", venue: null, ticket_url: "https://example.com/ingressos", status: "ultimos", published: true },
   { id: "d4", starts_at: inDays(-20), title: "Noite House", city: "Recife - PE", venue: null, ticket_url: null, status: "confirmado", published: true },
 ];

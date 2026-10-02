@@ -3,8 +3,8 @@ import Link from "next/link";
 export function Logo() {
   return (
     <Link href="/" className="logo" aria-label="DJ Feh Moura, página inicial">
-      <span className="logo__dj">DJ</span>
-      <span className="logo__name">Feh Moura</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/img/logo.png" alt="DJ Feh Moura, open format DJ e party planner" width={381} height={65} className="logo__img" />
     </Link>
   );
 }

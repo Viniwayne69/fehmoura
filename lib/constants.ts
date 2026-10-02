@@ -5,7 +5,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://fehmoura.ve
 export const SLOGAN = "Som, energia e a melhor noite da sua vida";
 
 export const DEFAULT_BIO =
-  "Feh Moura é DJ e apaixonada por música. Com um set que transita entre o eletrônico, o house e o groove da pista, ela cria atmosferas únicas, sempre com foco na energia da noite e na conexão com o público.";
+  "Feh Moura é DJ e apaixonada por música, toca Open Format DJ, Party Planner, funk, pop, house e música internacional, escolhendo cada música na hora certa de acordo com o clima da pista.";
 
 export const EVENT_STATUS_LABEL: Record<EventStatus, string> = {
   confirmado: "Confirmado",

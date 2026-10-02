@@ -498,6 +498,10 @@ button, input, textarea, select { font: inherit; color: inherit; }
   width: 100%; background: transparent; border: 0; border-bottom: 1px solid var(--line-strong);
   padding: 8px 0 10px; font-size: 14px; border-radius: 0; outline: none; transition: border-color .3s;
 }
+/* Celular: letra de 16px nos campos evita o zoom automático ao tocar (iPhone e Android) */
+@media (max-width: 860px), (pointer: coarse) {
+  .field input, .field textarea, .field select { font-size: 16px; }
+}
 .field select { appearance: none; cursor: pointer; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 10px) 50%, calc(100% - 5px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
 .field select option { background: var(--carbon); }
 .field textarea { resize: vertical; min-height: 72px; }

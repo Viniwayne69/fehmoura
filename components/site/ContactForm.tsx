@@ -28,18 +28,18 @@ export function ContactForm({ compact = false, defaultType }: Props) {
 
       <div className="field">
         <label htmlFor="c-name">Nome</label>
-        <input id="c-name" name="name" required autoComplete="name" defaultValue={f.name} />
+        <input id="c-name" name="name" required autoComplete="name" autoCapitalize="words" defaultValue={f.name} />
       </div>
       <div className="field">
         <label htmlFor="c-email">E-mail</label>
-        <input id="c-email" name="email" type="email" required autoComplete="email" defaultValue={f.email} />
+        <input id="c-email" name="email" type="email" inputMode="email" required autoComplete="email" autoCapitalize="none" autoCorrect="off" spellCheck={false} defaultValue={f.email} />
       </div>
 
       {!compact && (
         <>
           <div className="field">
             <label htmlFor="c-phone">WhatsApp</label>
-            <input id="c-phone" name="phone" type="tel" autoComplete="tel" placeholder="(00) 00000-0000" defaultValue={f.phone} />
+            <input id="c-phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" placeholder="(00) 00000-0000" defaultValue={f.phone} />
           </div>
           <div className="field">
             <label htmlFor="c-type">Tipo de evento</label>
@@ -54,14 +54,14 @@ export function ContactForm({ compact = false, defaultType }: Props) {
           </div>
           <div className="field">
             <label htmlFor="c-city">Cidade</label>
-            <input id="c-city" name="city" autoComplete="address-level2" defaultValue={f.city} />
+            <input id="c-city" name="city" autoComplete="address-level2" autoCapitalize="words" defaultValue={f.city} />
           </div>
         </>
       )}
 
       <div className="field full">
         <label htmlFor="c-msg">Mensagem</label>
-        <textarea id="c-msg" name="message" rows={compact ? 3 : 5} defaultValue={f.message} />
+        <textarea id="c-msg" name="message" autoCapitalize="sentences" rows={compact ? 3 : 5} defaultValue={f.message} />
       </div>
 
       <div className="full form__actions" style={{ justifyContent: "space-between", alignItems: "center", gap: 16 }}>

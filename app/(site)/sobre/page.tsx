@@ -34,7 +34,7 @@ export default async function SobrePage() {
 
   return (
     <>
-      <PageHero eyebrow="Sobre" title="A noite que você não vai querer que termine." />
+      <PageHero eyebrow="Sobre" title="A noite que você não vai querer que termine." long />
 
       <section className="section section--ink">
         <div className="wrap split">

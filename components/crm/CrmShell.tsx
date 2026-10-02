@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Logo } from "@/components/site/Logo";
 import { useCrm } from "./CrmProvider";
-import { CCalendar, CCheck, CChart, CDeals, CHome, CUsers, CWallet } from "./icons";
+import { CCalendar, CCheck, CChart, CDeals, CHome, CStar, CUsers, CWallet } from "./icons";
 
 const ITEMS = [
   { href: "/crm", label: "Início", Icon: CHome },
-  { href: "/crm/negocios", label: "Negócios", Icon: CDeals },
+  { href: "/crm/eventos", label: "Eventos", Icon: CStar },
+  { href: "/crm/clientes", label: "Clientes", Icon: CDeals },
   { href: "/crm/contatos", label: "Contatos", Icon: CUsers },
   { href: "/crm/calendario", label: "Calendário", Icon: CCalendar },
   { href: "/crm/tarefas", label: "Tarefas", Icon: CCheck },
@@ -23,7 +24,7 @@ export function CrmShell({ children }: { children: ReactNode }) {
   const active = (href: string) => (href === "/crm" ? pathname === "/crm" : pathname.startsWith(href));
   const newLeads = deals.filter((d) => d.stage === "novo").length;
   const lateTasks = tasks.filter((t) => !t.done && t.due <= today).length;
-  const badge = (href: string) => (href.endsWith("/negocios") ? newLeads : href.endsWith("/tarefas") ? lateTasks : 0);
+  const badge = (href: string) => (href.endsWith("/clientes") ? newLeads : href.endsWith("/tarefas") ? lateTasks : 0);
 
   return (
     <div className="adm crm">

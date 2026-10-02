@@ -83,7 +83,7 @@ export function MetricasView() {
       <PageHead title="Métricas" sub="Os números do seu negócio, atualizados conforme você usa o CRM." />
 
       <div className="adm-stats">
-        <Stat label="Pedidos no mês" value={String(requestsNow)} sub="novos negócios criados" />
+        <Stat label="Pedidos no mês" value={String(requestsNow)} sub="novos clientes criados" />
         <Stat label="Taxa de fechamento" value={`${rate}%`} sub={`${closed.length} de ${deals.length} pedidos`} />
         <Stat label="Ticket médio" value={brl(ticket)} sub="por evento fechado" />
         <Stat label="Resposta média" value="38 min" sub="valor de exemplo" />
@@ -92,10 +92,10 @@ export function MetricasView() {
       <div className="adm-grid-2">
         <BarsV title="Pedidos por mês" sub="últimos 6 meses" data={requests} />
         <BarsV title="Faturamento por mês" sub="valores recebidos, últimos 6 meses" data={revenue} />
-        <BarsH title="Funil" sub="negócios em cada etapa" data={funnel} />
-        <BarsH title="Tipos de evento" sub="quantidade de negócios" data={byType} />
+        <BarsH title="Funil" sub="clientes em cada etapa" data={funnel} />
+        <BarsH title="Tipos de evento" sub="quantidade de clientes" data={byType} />
         <BarsH title="Origem dos pedidos" sub="de onde o cliente veio" data={byOrigin} />
-        <BarsH title="Motivos de perda" sub="por que alguns pedidos não fecharam" data={lost} empty="Nenhum negócio perdido." />
+        <BarsH title="Motivos de perda" sub="por que alguns pedidos não fecharam" data={lost} empty="Nenhum cliente perdido." />
       </div>
     </>
   );

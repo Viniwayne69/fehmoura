@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { whatsappLink } from "@/lib/format";
 import { brl, dayNum, monthShort, monthKey, relativeDay } from "@/lib/crm/date";
@@ -9,15 +10,31 @@ import { DealModal, NewDealModal } from "../DealModal";
 import { CWhats } from "../icons";
 import { PageHead, Stat } from "../ui";
 
+type Upcoming = {
+  key: string; date: string; title: string; meta: string; city: string; kind: "cliente" | "site"; dealId: string | null;
+};
+
 export function InicioView() {
-  const { deals, payments, tasks, today, contactOf, dealOf, toggleTask } = useCrm();
+  const router = useRouter();
+  const { deals, payments, tasks, siteEvents, today, contactOf, dealOf, toggleTask } = useCrm();
   const [openId, setOpenId] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
 
   const newLeads = deals.filter((d) => d.stage === "novo");
-  const upcoming = deals
-    .filter((d) => d.stage === "reservada" && d.eventDate >= today)
-    .sort((a, b) => a.eventDate.localeCompare(b.eventDate));
+  const upcoming: Upcoming[] = [
+    ...deals
+      .filter((d) => d.stage === "reservada" && d.eventDate >= today)
+      .map((d): Upcoming => ({
+        key: d.id, date: d.eventDate, title: contactOf(d.contactId)?.name ?? "", meta: `${d.eventType} · ${d.venue}`,
+        city: d.city, kind: "cliente", dealId: d.id,
+      })),
+    ...siteEvents
+      .filter((e) => e.published && e.status !== "cancelado" && e.date >= today)
+      .map((e): Upcoming => ({
+        key: e.id, date: e.date, title: e.title, meta: [e.venue, e.city].filter(Boolean).join(" · "),
+        city: e.city, kind: "site", dealId: null,
+      })),
+  ].sort((a, b) => a.date.localeCompare(b.date));
   const next = upcoming[0];
   const unpaid = payments.filter((p) => !p.paidAt);
   const toReceive = unpaid.reduce((s, p) => s + p.amount, 0);
@@ -31,13 +48,13 @@ export function InicioView() {
   return (
     <>
       <PageHead title="Olá, Feh" sub="Seus pedidos, eventos e recebimentos em um só lugar.">
-        <button type="button" className="adm-btn adm-btn--primary" onClick={() => setCreating(true)}>+ Novo negócio</button>
-        <Link href="/crm/negocios" className="adm-btn">Ver funil</Link>
+        <button type="button" className="adm-btn adm-btn--primary" onClick={() => setCreating(true)}>+ Novo cliente</button>
+        <Link href="/crm/clientes" className="adm-btn">Ver funil</Link>
       </PageHead>
 
       <div className="adm-stats">
-        <Stat label="Leads novos" value={String(newLeads.length)} sub="aguardando resposta" hot={newLeads.length > 0} />
-        <Stat label="Próximo evento" value={next ? `${dayNum(next.eventDate)} ${monthShort(next.eventDate)}` : "—"} sub={next ? `${next.eventType}, ${next.city}` : "Nenhuma data reservada"} />
+        <Stat label="Clientes novos" value={String(newLeads.length)} sub="aguardando resposta" hot={newLeads.length > 0} />
+        <Stat label="Próximo evento" value={next ? `${dayNum(next.date)} ${monthShort(next.date)}` : "—"} sub={next ? `${next.title}, ${next.city}` : "Nenhuma data marcada"} />
         <Stat label="A receber" value={brl(toReceive)} sub={late.length ? `${late.length} atrasado${late.length > 1 ? "s" : ""}` : "tudo em dia"} hot={late.length > 0} />
         <Stat label="Recebido no mês" value={brl(receivedMonth)} sub="pagamentos confirmados" />
       </div>
@@ -47,24 +64,28 @@ export function InicioView() {
           <h2>Próximos eventos</h2>
           {upcoming.length ? (
             <ul className="adm-list crm-flush">
-              {upcoming.slice(0, 5).map((d) => (
-                <li key={d.id} className="adm-row crm-click" onClick={() => setOpenId(d.id)}>
-                  <div className="adm-row__date"><b>{dayNum(d.eventDate)}</b><small>{monthShort(d.eventDate).toUpperCase()}</small></div>
+              {upcoming.slice(0, 5).map((u) => (
+                <li
+                  key={u.key}
+                  className="adm-row crm-click"
+                  onClick={() => (u.dealId ? setOpenId(u.dealId) : router.push("/crm/eventos"))}
+                >
+                  <div className="adm-row__date"><b>{dayNum(u.date)}</b><small>{monthShort(u.date).toUpperCase()}</small></div>
                   <div>
-                    <div className="adm-row__title">{contactOf(d.contactId)?.name}</div>
-                    <div className="adm-row__meta">{d.eventType} · {d.venue}</div>
+                    <div className="adm-row__title">{u.title}</div>
+                    <div className="adm-row__meta">{u.meta}</div>
                   </div>
-                  <span className={`tag${d.isPublic ? " tag--red" : ""}`}>{d.isPublic ? "Público" : "Particular"}</span>
+                  <span className={`tag${u.kind === "site" ? " tag--red" : ""}`}>{u.kind === "site" ? "No site" : "Cliente"}</span>
                 </li>
               ))}
             </ul>
           ) : (
-            <div className="adm-empty"><strong>Nenhuma data reservada</strong>Quando um cliente pagar o sinal, a data aparece aqui.</div>
+            <div className="adm-empty"><strong>Nenhuma data marcada</strong>Eventos do site e datas reservadas por clientes aparecem aqui.</div>
           )}
         </section>
 
         <section className="adm-card">
-          <h2>Leads novos</h2>
+          <h2>Clientes novos</h2>
           {newLeads.length ? (
             <ul className="adm-list crm-flush">
               {newLeads.map((d) => {
@@ -86,7 +107,7 @@ export function InicioView() {
               })}
             </ul>
           ) : (
-            <div className="adm-empty"><strong>Nenhum lead novo</strong>Quando alguém preencher o formulário do site, aparece aqui.</div>
+            <div className="adm-empty"><strong>Nenhum cliente novo</strong>Quando alguém preencher o formulário do site, aparece aqui.</div>
           )}
         </section>
 

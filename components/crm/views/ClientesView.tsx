@@ -9,7 +9,7 @@ import { DealModal, NewDealModal } from "../DealModal";
 import { CLeft, CRight } from "../icons";
 import { PageHead, StageTag } from "../ui";
 
-export function NegociosView() {
+export function ClientesView() {
   const { deals, contactOf, moveDeal, today } = useCrm();
   const [mode, setMode] = useState<"quadro" | "lista">("quadro");
   const [query, setQuery] = useState("");
@@ -41,8 +41,8 @@ export function NegociosView() {
 
   return (
     <>
-      <PageHead title="Negócios" sub="Arraste os cartões entre as etapas ou use as setas.">
-        <button type="button" className="adm-btn adm-btn--primary" onClick={() => setCreating(true)}>+ Novo negócio</button>
+      <PageHead title="Clientes" sub="Arraste os cartões entre as etapas ou use as setas.">
+        <button type="button" className="adm-btn adm-btn--primary" onClick={() => setCreating(true)}>+ Novo cliente</button>
       </PageHead>
 
       <div className="crm-toolbar">
@@ -51,7 +51,7 @@ export function NegociosView() {
           <button type="button" role="tab" aria-selected={mode === "lista"} onClick={() => setMode("lista")}>Lista</button>
         </div>
         <div className="adm-field crm-search">
-          <input type="search" placeholder="Buscar cliente, cidade ou tipo" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Buscar negócios" />
+          <input type="search" placeholder="Buscar cliente, cidade ou tipo" value={query} onChange={(e) => setQuery(e.target.value)} aria-label="Buscar clientes" />
         </div>
       </div>
 
@@ -100,7 +100,7 @@ export function NegociosView() {
                       </article>
                     );
                   })}
-                  {list.length === 0 && <p className="crm-col__empty">Nenhum negócio</p>}
+                  {list.length === 0 && <p className="crm-col__empty">Nenhum cliente</p>}
                 </div>
               </section>
             );

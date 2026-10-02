@@ -38,8 +38,6 @@ export type Deal = {
   guests: number | null;
   /** valor combinado, em reais (0 enquanto não houver orçamento) */
   value: number;
-  /** aparece na agenda pública do site */
-  isPublic: boolean;
   origin: Origin;
   message: string;
   lostReason: string | null;
@@ -55,4 +53,22 @@ export type Task = {
   due: string;
   done: boolean;
   dealId: string | null;
+};
+
+export type SiteEventStatus = "confirmado" | "ultimos" | "esgotado" | "cancelado";
+
+/** Evento da agenda pública do site. Não tem ligação com cliente: é só o que aparece em "Próximos eventos". */
+export type SiteEvent = {
+  id: string;
+  title: string;
+  /** AAAA-MM-DD */
+  date: string;
+  /** HH:MM, pode ficar vazio */
+  time: string;
+  city: string;
+  venue: string;
+  ticketUrl: string;
+  status: SiteEventStatus;
+  /** visível no site */
+  published: boolean;
 };

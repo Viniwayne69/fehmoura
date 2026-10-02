@@ -42,7 +42,7 @@ export function ContatosView() {
                 <div className="adm-row__meta">{c.city} · {c.origin}</div>
               </div>
               <div className="crm-row-contact__nums">
-                <b>{n} {n === 1 ? "negócio" : "negócios"}</b>
+                <b>{n} {n === 1 ? "pedido" : "pedidos"}</b>
                 <small>{spent > 0 ? `${brl(spent)} recebidos` : "sem pagamentos"}</small>
               </div>
             </li>
@@ -64,7 +64,7 @@ export function ContatosView() {
               <CWhats /> Chamar no WhatsApp
             </a>
           )}
-          <h3 className="crm-h3">Histórico de negócios</h3>
+          <h3 className="crm-h3">Histórico de pedidos</h3>
           <ul className="adm-list crm-flush">
             {dealsOf(selected.id).map((d) => (
               <li key={d.id} className="adm-row crm-click" style={{ gridTemplateColumns: "1fr auto" }} onClick={() => setDealId(d.id)}>

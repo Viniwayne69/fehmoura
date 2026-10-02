@@ -29,7 +29,7 @@ export function TarefasView() {
 
   return (
     <>
-      <PageHead title="Tarefas" sub="Lembretes ligados aos seus negócios." />
+      <PageHead title="Tarefas" sub="Lembretes ligados aos seus clientes." />
 
       <form className="adm-card crm-newtask" onSubmit={submit}>
         <div className="adm-field">

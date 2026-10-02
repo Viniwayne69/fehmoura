@@ -1,12 +1,14 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useState, type ReactNode } from "react";
-import { demoContacts, demoDeals, demoPayments, demoTasks } from "@/lib/crm/demo";
+import { demoContacts, demoDeals, demoPayments, demoSiteEvents, demoTasks } from "@/lib/crm/demo";
 import { todayISO } from "@/lib/crm/date";
 import { STAGE_LABEL } from "@/lib/crm/stages";
-import type { Contact, Deal, Payment, StageId, Task } from "@/lib/crm/types";
+import type { Contact, Deal, Payment, SiteEvent, StageId, Task } from "@/lib/crm/types";
 
 type NewDeal = { name: string; phone: string; email: string; eventType: string; eventDate: string; city: string };
+
+export type EventInput = Omit<SiteEvent, "id">;
 
 type Crm = {
   today: string;
@@ -14,17 +16,20 @@ type Crm = {
   deals: Deal[];
   payments: Payment[];
   tasks: Task[];
+  siteEvents: SiteEvent[];
   contactOf: (id: string) => Contact | undefined;
   dealOf: (id: string) => Deal | undefined;
   paymentsOf: (dealId: string) => Payment[];
   paidOf: (dealId: string) => number;
   moveDeal: (id: string, stage: StageId) => void;
-  setPublic: (id: string, value: boolean) => void;
   setLostReason: (id: string, reason: string) => void;
   togglePaid: (paymentId: string) => void;
   toggleTask: (id: string) => void;
   addTask: (title: string, due: string, dealId: string | null) => void;
   addDeal: (data: NewDeal) => void;
+  saveEvent: (data: EventInput, id?: string) => void;
+  removeEvent: (id: string) => void;
+  toggleEventPublished: (id: string) => void;
 };
 
 const Ctx = createContext<Crm | null>(null);
@@ -42,6 +47,7 @@ export function CrmProvider({ children }: { children: ReactNode }) {
   const [deals, setDeals] = useState<Deal[]>(demoDeals);
   const [payments, setPayments] = useState<Payment[]>(demoPayments);
   const [tasks, setTasks] = useState<Task[]>(demoTasks);
+  const [siteEvents, setSiteEvents] = useState<SiteEvent[]>(demoSiteEvents);
 
   const contactOf = useCallback((id: string) => contacts.find((c) => c.id === id), [contacts]);
   const dealOf = useCallback((id: string) => deals.find((x) => x.id === id), [deals]);
@@ -64,10 +70,6 @@ export function CrmProvider({ children }: { children: ReactNode }) {
           : x,
       ),
     );
-  }, []);
-
-  const setPublic = useCallback((id: string, value: boolean) => {
-    setDeals((all) => all.map((x) => (x.id === id ? { ...x, isPublic: value } : x)));
   }, []);
 
   const setLostReason = useCallback((id: string, reason: string) => {
@@ -96,19 +98,31 @@ export function CrmProvider({ children }: { children: ReactNode }) {
     setDeals((all) => [
       {
         id: `d${stamp}`, contactId, stage: "novo", eventType: data.eventType, eventDate: data.eventDate, startTime: "21:00", hours: 4,
-        venue: "A definir", city: data.city, guests: null, value: 0, isPublic: false, origin: "Outro", message: "",
-        lostReason: null, createdAt: todayISO(), history: [{ at: todayISO(), text: "Negócio criado manualmente" }],
+        venue: "A definir", city: data.city, guests: null, value: 0, origin: "Outro", message: "",
+        lostReason: null, createdAt: todayISO(), history: [{ at: todayISO(), text: "Cliente criado manualmente" }],
       },
       ...all,
     ]);
   }, []);
 
+  const saveEvent = useCallback((data: EventInput, id?: string) => {
+    setSiteEvents((all) => (id ? all.map((e) => (e.id === id ? { ...data, id } : e)) : [{ ...data, id: `e${Date.now()}` }, ...all]));
+  }, []);
+
+  const removeEvent = useCallback((id: string) => {
+    setSiteEvents((all) => all.filter((e) => e.id !== id));
+  }, []);
+
+  const toggleEventPublished = useCallback((id: string) => {
+    setSiteEvents((all) => all.map((e) => (e.id === id ? { ...e, published: !e.published } : e)));
+  }, []);
+
   const value = useMemo<Crm>(
     () => ({
-      today, contacts, deals, payments, tasks, contactOf, dealOf, paymentsOf, paidOf,
-      moveDeal, setPublic, setLostReason, togglePaid, toggleTask, addTask, addDeal,
+      today, contacts, deals, payments, tasks, siteEvents, contactOf, dealOf, paymentsOf, paidOf,
+      moveDeal, setLostReason, togglePaid, toggleTask, addTask, addDeal, saveEvent, removeEvent, toggleEventPublished,
     }),
-    [today, contacts, deals, payments, tasks, contactOf, dealOf, paymentsOf, paidOf, moveDeal, setPublic, setLostReason, togglePaid, toggleTask, addTask, addDeal],
+    [today, contacts, deals, payments, tasks, siteEvents, contactOf, dealOf, paymentsOf, paidOf, moveDeal, setLostReason, togglePaid, toggleTask, addTask, addDeal, saveEvent, removeEvent, toggleEventPublished],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

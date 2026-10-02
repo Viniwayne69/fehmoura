@@ -1,7 +1,7 @@
 import type { StageId } from "./types";
 
 export const STAGES: { id: StageId; label: string; hint: string }[] = [
-  { id: "novo", label: "Lead novo", hint: "Chegou pelo formulário e ainda não foi respondido" },
+  { id: "novo", label: "Cliente novo", hint: "Chegou pelo formulário e ainda não foi respondido" },
   { id: "conversa", label: "Em conversa", hint: "Alinhando detalhes do evento" },
   { id: "orcamento", label: "Orçamento enviado", hint: "Valor passado ao cliente" },
   { id: "reservada", label: "Data reservada", hint: "Aceitou e pagou o sinal. A data está bloqueada" },

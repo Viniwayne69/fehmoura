@@ -15,3 +15,5 @@ export const CClose = (p: P) => (<svg {...base} {...p}><path d="M6 6l12 12M18 6L
 export const CLeft = (p: P) => (<svg {...base} {...p}><path d="M15 5l-7 7 7 7" /></svg>);
 export const CRight = (p: P) => (<svg {...base} {...p}><path d="M9 5l7 7-7 7" /></svg>);
 export const CDownload = (p: P) => (<svg {...base} {...p}><path d="M12 4v11M7 11l5 5 5-5M5 20h14" /></svg>);
+export const CStar = (p: P) => (<svg {...base} {...p}><path d="M12 3.5l2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8z" /></svg>);
+export const CPlus = (p: P) => (<svg {...base} {...p}><path d="M12 5v14M5 12h14" /></svg>);

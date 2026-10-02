@@ -29,7 +29,7 @@ function whatsText(deal: Deal, name: string): string {
 }
 
 export function DealModal({ dealId, onClose }: { dealId: string; onClose: () => void }) {
-  const { dealOf, contactOf, paymentsOf, paidOf, moveDeal, setPublic, setLostReason, togglePaid, today } = useCrm();
+  const { dealOf, contactOf, paymentsOf, paidOf, moveDeal, setLostReason, togglePaid, today } = useCrm();
   const deal = dealOf(dealId);
   const contact = deal ? contactOf(deal.contactId) : undefined;
   if (!deal || !contact) return null;
@@ -43,7 +43,6 @@ export function DealModal({ dealId, onClose }: { dealId: string; onClose: () => 
     <Modal title={contact.name} onClose={onClose} wide>
       <div className="crm-modal__tags">
         <StageTag stage={deal.stage} />
-        <span className={`tag${deal.isPublic ? " tag--red" : ""}`}>{deal.isPublic ? "Público no site" : "Evento particular"}</span>
       </div>
 
       <div className="crm-detail">
@@ -126,10 +125,6 @@ export function DealModal({ dealId, onClose }: { dealId: string; onClose: () => 
             </select>
           </div>
         )}
-        <label className="adm-check full">
-          <input type="checkbox" checked={deal.isPublic} onChange={(e) => setPublic(deal.id, e.target.checked)} />
-          Mostrar na agenda pública do site
-        </label>
       </div>
 
       <h3 className="crm-h3">Histórico</h3>
@@ -163,7 +158,7 @@ export function NewDealModal({ onClose }: { onClose: () => void }) {
   }
 
   return (
-    <Modal title="Novo negócio" onClose={onClose}>
+    <Modal title="Novo cliente" onClose={onClose}>
       <form className="adm-form" onSubmit={submit} noValidate>
         <div className="adm-field full"><label htmlFor="n-name">Nome do cliente</label><input id="n-name" name="name" autoFocus /></div>
         <div className="adm-field"><label htmlFor="n-phone">WhatsApp</label><input id="n-phone" name="phone" type="tel" placeholder="5581999990000" /></div>
@@ -177,7 +172,7 @@ export function NewDealModal({ onClose }: { onClose: () => void }) {
         {error && <p className="adm-msg adm-msg--err full">{error}</p>}
         <div className="adm-form__foot full">
           <button type="button" className="adm-btn" onClick={onClose}>Cancelar</button>
-          <button type="submit" className="adm-btn adm-btn--primary">Criar negócio</button>
+          <button type="submit" className="adm-btn adm-btn--primary">Criar cliente</button>
         </div>
       </form>
     </Modal>

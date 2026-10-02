@@ -140,12 +140,12 @@ export function HomeView({ events, photos, settings }: Props) {
             <span className="eyebrow">Contato</span>
             <h2 className="title title--sm">Vamos conversar?</h2>
             <p className="lead">Para contratar, tirar dúvidas ou falar sobre projetos, entre em contato.</p>
-          </Reveal>
-          <Reveal delay={1}>
             <ContactChannels settings={settings} />
           </Reveal>
-          <Reveal delay={2} className="contact__form-wrap">
-            <ContactForm compact />
+          <Reveal delay={1} className="contact__form-wrap">
+            <span className="eyebrow">Pedido de contratação</span>
+            <h2 className="title title--sm" style={{ marginBottom: 32 }}>Conte sobre o evento</h2>
+            <ContactForm />
           </Reveal>
         </div>
       </section>

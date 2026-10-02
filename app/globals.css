@@ -411,9 +411,18 @@ button, input, textarea, select { font: inherit; color: inherit; }
 .event__title { font-size: 14px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .event__status { font-size: 10px; font-weight: 600; letter-spacing: var(--track-lg); text-transform: uppercase; color: var(--red); white-space: nowrap; }
 .event__status--esgotado { color: var(--dim); }
+.event__side { display: flex; align-items: center; justify-content: flex-end; gap: 22px; }
+.event__ticket {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 6px 14px; white-space: nowrap;
+  border: 1px solid var(--red); color: var(--white); font-size: 10px; font-weight: 600; letter-spacing: var(--track-lg); text-transform: uppercase;
+  transition: background .3s;
+}
+.event__ticket svg { width: 14px; height: 14px; }
+.event__ticket:hover { background: var(--red); }
 @media (max-width: 560px) {
   .event { grid-template-columns: 52px 1fr; gap: 16px; }
-  .event__status { grid-column: 2; }
+  .event__side { grid-column: 2; justify-content: space-between; flex-wrap: wrap; gap: 10px 14px; }
+  .event__ticket { padding: 6px 12px; }
 }
 
 .empty-agenda { padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }

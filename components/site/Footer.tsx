@@ -1,10 +1,12 @@
 import Link from "next/link";
 import type { Settings } from "@/lib/types";
+import { MistWhen } from "./MistWhen";
 import { Socials } from "./Socials";
 
 export function Footer({ settings }: { settings: Settings }) {
   return (
     <footer className="footer">
+      <MistWhen query="(min-width: 0px)" className="footer__mist" speed={0.6} opacity={0.8} />
       <div className="wrap">
         <div className="footer__top">
           <span className="footer__name">DJ Feh Moura</span>

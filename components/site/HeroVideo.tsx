@@ -35,13 +35,32 @@ export function HeroVideo({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const auto = !reduce && !conn?.saveData;
+    const auto = !reduce;
     setCanAutoplay(auto);
 
     // garante o mudo antes de tentar tocar (necessário para o autoplay no iPhone)
     videos().forEach((v) => { v.muted = true; v.defaultMuted = true; });
     if (auto) playAll();
+
+    // celular que bloqueou o autoplay: o primeiro toque em qualquer lugar inicia o vídeo (sem mudar nada na tela)
+    const retry = () => {
+      const main = mainRef.current;
+      const box = sectionRef.current?.getBoundingClientRect();
+      const visible = !!box && box.bottom > 0 && box.top < window.innerHeight;
+      if (auto && visible && main && main.paused) playAll();
+    };
+    const kick = () => {
+      retry();
+      const main = mainRef.current;
+      if (main && !main.paused) stop();
+    };
+    const evs = ["touchend", "pointerup", "click", "keydown"] as const;
+    const stop = () => evs.forEach((e) => window.removeEventListener(e, kick));
+    if (auto) evs.forEach((e) => window.addEventListener(e, kick, { passive: true }));
+    // se o vídeo só ficar pronto depois (rede lenta), tenta de novo
+    const main0 = mainRef.current;
+    main0?.addEventListener("canplay", retry);
+    document.addEventListener("visibilitychange", retry);
 
     const el = sectionRef.current;
     if (!el) return;
@@ -60,7 +79,12 @@ export function HeroVideo({ children }: { children: ReactNode }) {
       { threshold: 0.2 },
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      stop();
+      main0?.removeEventListener("canplay", retry);
+      document.removeEventListener("visibilitychange", retry);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
